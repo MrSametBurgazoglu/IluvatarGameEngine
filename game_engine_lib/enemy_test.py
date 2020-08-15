@@ -25,7 +25,7 @@ class Enemy(NPC):
         self.stabbing_switcher = None
         self.stabbing_animation.scripts.append([88, lambda: self.remove_from_animator_list(self.stabbing_switcher)])
         self.get_stabbing_animation = Animator("player_get_stabbing.animation", True, True)
-        self.get_stabbing_switcher = None
+        self.get_stabbing_switcher = None  # TODO WRITE ANIMATOR CONTROLLER FOR NPC
         self.tumble_animation = Animator("player_tumble.animation", True, True)
         self.swing_sword_animation = Animator("player_swing_sword.animation", True, True)
         self.skeleton = Skeleton("player.skeleton")

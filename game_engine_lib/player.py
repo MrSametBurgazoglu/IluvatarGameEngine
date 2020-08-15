@@ -18,10 +18,14 @@ class Player(Character):
         self.stabbing_animation = Animator("player_stabbing.animation", True, True)
         self.take_sword_animation = Animator("player_take_sword.animation", True, True)
         self.take_sword_animation.scripts.append([89, self.take_hand_sword])
+        self.swing_sword_animation = Animator("player_swing_sword.animation", True, True)
+        self.tumble_animation = Animator("player_tumble.animation", True, True)
         self.animator_list.append([None, self.idle_animation, None])
         self.animator_list.append(['character_moved', self.walking_animation, None])
         self.animator_list.append(['q_pressed', self.stabbing_animation, None])
         self.animator_list.append(['e_pressed', self.take_sword_animation, None])
+        self.animator_list.append(['w_pressed', self.swing_sword_animation, None])
+        self.animator_list.append(['space_pressed', self.tumble_animation, None])
         self.skeleton = Skeleton("player.skeleton")
         self.add_character_parts("#004", "karakter/l_arm.png")
         self.add_character_parts("#006", "karakter/l_foot.png")
@@ -68,6 +72,7 @@ class Player(Character):
                     if x[2].switch_animation.finishable:
                         act = True
         keywords = [x[0] for x in self.animator_list]
+        print(action)
         if action[0] is False and not any(item in keywords for item in event) and not act and "character_moved" not in event:
             self.animator_list[0][2] = self.switch_to_animation(self.animator_list[0][1])
 
