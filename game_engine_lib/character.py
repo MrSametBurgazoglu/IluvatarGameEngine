@@ -26,6 +26,7 @@ class Character(object):
         self.character_image = None
         self.game_engine = None
         self.connected_character = None#bir karaktere bağlanmak
+        self.action_list = {}
 
     def move(self, x, y):
         if x > self.pos_x and self.characterlook is False: #Gideceği hedef sağ tarafta ve karakter sola bakıyor
@@ -142,3 +143,7 @@ class Character(object):
         for x in self.game_engine.current_scene.character_list:
             if x.character_id == id:
                 return ((x.pos_x-self.pos_x) ** 2 + (x.pos_y-self.pos_y) ** 2) ** 0.5
+
+    def add_to_animator_list(self, key, animation):
+        self.animator_list.append([key, animation, None])
+        self.action_list[animation] = False

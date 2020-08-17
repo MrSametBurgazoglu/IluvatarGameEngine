@@ -1,7 +1,8 @@
 class Switcher(object):
-    def __init__(self, data, animation2, total_fps, finishable=True):
+    def __init__(self, data, animation2, total_fps, finishable=True, untouch=False):
         self.switch_fps = 0
         self.total_fps = total_fps
+        self.untouch = untouch
         data2 = []
         ids = animation2.get_ids()
         for x in data:

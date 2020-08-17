@@ -56,7 +56,6 @@ class Player(Character):
             self.refresh_equipment(x)
 
     def animator_controller(self, event):
-        action = []
         act = False
         for x in self.animator_list:  # TODO PERFORMANCE ISSUES MOST BE SOLVED
             if x[0] in event:
@@ -66,17 +65,20 @@ class Player(Character):
                     if not x[2].switch_animation.is_working():
                         x[2] = self.switch_to_animation(x[1])
             if x[2] is not None:
-                action.append(x[2].switch_animation.working)
+                self.action_list[x[1]] = x[2].switch_animation.working
                 if x[2].switch_animation.is_working():
                     x[2].next()
                     if x[2].switch_animation.finishable:
                         act = True
         keywords = [x[0] for x in self.animator_list]
-        print(action)
-        if action[0] is False and not any(item in keywords for item in event) and not act and "character_moved" not in event:
+        if self.action_list[self.idle_animation] is False and not any(item in keywords for item in event) and not act and "character_moved" not in event:
             self.animator_list[0][2] = self.switch_to_animation(self.animator_list[0][1])
 
     def switch_to_animation(self, animation):
+        can_switch = True
+        for x in self.action_list:
+            if self.action_list[x] and x.untouchable:
+                print("ss")
         switcher = Switcher(self.last_data, animation, 30, animation.finishable)
         ids = switcher.switch_animation.get_ids()
         for x in self.character_parts:
