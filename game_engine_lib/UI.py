@@ -3,6 +3,7 @@ from pygame import MOUSEBUTTONDOWN
 
 font.init()
 
+
 class Widget(object):
     def __init__(self):
         self.pos_x = 0

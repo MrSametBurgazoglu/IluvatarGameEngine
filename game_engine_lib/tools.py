@@ -12,6 +12,7 @@ def get_class(id, data):
         if x.id == id:
             return x
 
+
 def get_position_to_draw(image, pos, originPos, angle):
     w, h = image.get_size()
     box = [pygame.math.Vector2(p) for p in [(0, 0), (w, 0), (w, -h), (0, -h)]]

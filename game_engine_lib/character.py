@@ -129,6 +129,9 @@ class Character(object):
         #           self.character_image.get_height()),
         #          1)
 
+    def draw_immobile_character(self, image, display, pos):
+        display.blit(image, pos)
+
     def draw_shadow(self, liste, display):
         shadow.get_shadow(display, liste, (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2, self.pos_y))
 

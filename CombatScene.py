@@ -1,5 +1,5 @@
 from game_engine_lib.scene import Scene
-from game_engine_lib.enemy_test import Enemy
+from game_engine_lib.enemy_taret import Enemy
 from game_engine_lib.equipment import Equipment
 from scene_controller import SceneController
 from game_engine_lib import UI
@@ -74,12 +74,12 @@ class CombatScene(Scene):
 
     def init(self):
         enemy_character = Enemy()
-        sword = Equipment()
-        sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
-        enemy_character.add_equipment(sword)
+        #sword = Equipment()
+        #sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
+        #enemy_character.add_equipment(sword)
         self.add_to_character_list(enemy_character)
         # self.character_list[0].switch_to_take_sword_animation()
-        enemy_character.switch_to_take_sword_animation()
+        #enemy_character.switch_to_take_sword_animation()
 
 
 combat_scene = CombatScene()

@@ -1,4 +1,5 @@
 from .character import Character
+from math import atan2, degrees
 
 
 class NPC(Character):
@@ -20,3 +21,9 @@ class NPC(Character):
             for x in self.game_engine.current_scene.character_list:
                 if x.character_id == self.connected_character:
                     return self.move(x.pos_x, x.pos_y)
+
+    def object_direction(self):
+        if self.connect_to_a_character:
+            for x in self.game_engine.current_scene.character_list:
+                if x.character_id == self.connected_character:
+                    return degrees(atan2(x.pos_x-self.pos_x, x.pos_y-self.pos_y))
