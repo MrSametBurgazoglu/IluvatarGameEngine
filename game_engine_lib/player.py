@@ -19,13 +19,19 @@ class Player(Character):
         self.take_sword_animation = Animator("player_take_sword.animation", True, True)
         self.take_sword_animation.scripts.append([89, self.take_hand_sword])
         self.swing_sword_animation = Animator("player_swing_sword.animation", True, True)
-        self.tumble_animation = Animator("player_tumble.animation", True, True)
-        self.animator_list.append([None, self.idle_animation, None])
-        self.animator_list.append(['character_moved', self.walking_animation, None])
-        self.animator_list.append(['q_pressed', self.stabbing_animation, None])
-        self.animator_list.append(['e_pressed', self.take_sword_animation, None])
-        self.animator_list.append(['w_pressed', self.swing_sword_animation, None])
-        self.animator_list.append(['space_pressed', self.tumble_animation, None])
+        self.tumble_animation = Animator("player_tumble.animation", True, True, True)
+        self.add_to_animator_list(None, self.idle_animation)
+        self.add_to_animator_list('character_moved', self.walking_animation)
+        self.add_to_animator_list('q_pressed', self.stabbing_animation)
+        self.add_to_animator_list('e_pressed', self.take_sword_animation)
+        self.add_to_animator_list('w_pressed', self.swing_sword_animation)
+        self.add_to_animator_list('space_pressed', self.tumble_animation)
+        #self.animator_list.append([None, self.idle_animation, None])
+        #self.animator_list.append(['character_moved', self.walking_animation, None])
+        #self.animator_list.append(['q_pressed', self.stabbing_animation, None])
+        #self.animator_list.append(['e_pressed', self.take_sword_animation, None])
+        #self.animator_list.append(['w_pressed', self.swing_sword_animation, None])
+        #self.animator_list.append(['space_pressed', self.tumble_animation, None])
         self.skeleton = Skeleton("player.skeleton")
         self.add_character_parts("#004", "karakter/l_arm.png")
         self.add_character_parts("#006", "karakter/l_foot.png")
@@ -58,7 +64,7 @@ class Player(Character):
     def animator_controller(self, event):
         act = False
         for x in self.animator_list:  # TODO PERFORMANCE ISSUES MOST BE SOLVED
-            if x[0] in event:
+            if x[0] in event and not self.is_untouchable():
                 if x[2] is None:
                     x[2] = self.switch_to_animation(x[1])
                 else:
@@ -71,14 +77,17 @@ class Player(Character):
                     if x[2].switch_animation.finishable:
                         act = True
         keywords = [x[0] for x in self.animator_list]
-        if self.action_list[self.idle_animation] is False and not any(item in keywords for item in event) and not act and "character_moved" not in event:
+        if self.action_list[self.idle_animation] is False and not any(item in keywords for item in event) and not act \
+                and "character_moved" not in event and not self.is_untouchable():
             self.animator_list[0][2] = self.switch_to_animation(self.animator_list[0][1])
 
-    def switch_to_animation(self, animation):
-        can_switch = True
+    def is_untouchable(self):
         for x in self.action_list:
             if self.action_list[x] and x.untouchable:
-                print("ss")
+                return True
+        return False
+
+    def switch_to_animation(self, animation):
         switcher = Switcher(self.last_data, animation, 30, animation.finishable)
         ids = switcher.switch_animation.get_ids()
         for x in self.character_parts:

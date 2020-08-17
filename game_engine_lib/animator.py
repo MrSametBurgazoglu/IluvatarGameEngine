@@ -2,7 +2,6 @@ class Switcher(object):
     def __init__(self, data, animation2, total_fps, finishable=True, untouch=False):
         self.switch_fps = 0
         self.total_fps = total_fps
-        self.untouch = untouch
         data2 = []
         ids = animation2.get_ids()
         for x in data:
@@ -20,7 +19,7 @@ class Switcher(object):
             self.total_fps = x[0]
             self.animation_data.append(a)
         self.total_fps += total_fps
-        self.switch_animation = Animator(self.animation_data, False, finishable)
+        self.switch_animation = Animator(self.animation_data, False, finishable, untouch)
         self.switch_animation.scripts = self.new_animation.scripts
         self.switch_animation.animation_total_fps = self.total_fps
         self.switch_animation.start_fps = total_fps
@@ -39,10 +38,11 @@ class Switcher(object):
 
 
 class Animator(object):
-    def __init__(self, animation_file, file=True, finishable=False):
+    def __init__(self, animation_file, file=True, finishable=False, untouch=False):
         self.current_fps = 0
         self.lastfps = 0
         self.finishable = finishable
+        self.untouchable = untouch
         self.fixed_point = []
         self.scripts = []
         self.ids = []
