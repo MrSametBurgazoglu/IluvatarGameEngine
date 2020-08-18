@@ -22,6 +22,7 @@ class Character(object):
         self.last_data = []#son animatordan dönen veriler
         self.animator_list = []# key, animation, switcher
         self.maximum_list = []
+        self.max_list = []
         self.equipment_list = []
         self.character_image = None
         self.game_engine = None
@@ -111,18 +112,20 @@ class Character(object):
 
     def draw_character(self, skeleton, display):
         self.set_character_parts(skeleton)
-        max_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
-        self.character_image = Surface((max_list[1]-max_list[0], max_list[3]-max_list[2]), SRCALPHA)
+        self.max_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
+        self.character_image = Surface((self.max_list[1]-self.max_list[0], self.max_list[3]-self.max_list[2]), SRCALPHA)
         if len(self.maximum_list) == 0:
             self.maximum_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
         self.draw_shadow(self.maximum_list, display)
         self.set_physic()
-        self.draw_character_image(max_list)
+        self.draw_character_image(self.max_list)
         img = self.character_image.convert_alpha()
         if not self.characterlook:
             img = flip(img, True, False)
-        display.blit(img, (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2,
+        display.blit(img, (self.pos_x,
                            self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
+        #display.blit(img, (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2,
+        #                   self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
         #draw_rect(display, (255, 0, 0),
         #          (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2, self.pos_y+(self.maximum_list[3]-self.character_image.get_height()),
         #           self.character_image.get_width(),

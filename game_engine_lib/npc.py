@@ -26,4 +26,6 @@ class NPC(Character):
         if self.connect_to_a_character:
             for x in self.game_engine.current_scene.character_list:
                 if x.character_id == self.connected_character:
-                    return degrees(atan2(x.pos_x-self.pos_x, x.pos_y-self.pos_y))
+                    object_pos = (x.pos_x + (x.max_list[1]-x.max_list[0])/2,
+                                  x.pos_y+(x.maximum_list[3]-x.character_image.get_height()/2))
+                    return degrees(atan2(object_pos[0]-self.pos_x, object_pos[1]-self.pos_y)), object_pos

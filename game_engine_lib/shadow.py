@@ -39,8 +39,8 @@ def get_maximum_only_maxy(liste, character_pos):
 
 
 def get_shadow(display, maximum_list, character_pos):
-    x = int((maximum_list[1] - maximum_list[0])/2) + character_pos[0]
+    x = int((maximum_list[1] + maximum_list[0])/2) + character_pos[0]
     y = maximum_list[3] + character_pos[1]
     surface = Surface((100, 40), SRCALPHA)
     ellipse(surface, (0, 0, 0, 150), (10, 5, 80, 32))
-    display.blit(surface.convert_alpha(), (x-50, y-20))
+    display.blit(surface.convert_alpha(), (x-40, y-20))
