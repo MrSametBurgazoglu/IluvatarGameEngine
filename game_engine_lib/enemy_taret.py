@@ -6,7 +6,6 @@ from pygame import draw
 from .tools import get_position_to_draw
 from .bullet import Bullet
 from math import sin, cos, radians
-from .ID_creater import ID
 
 
 class Enemy(NPC):
@@ -28,10 +27,8 @@ class Enemy(NPC):
     def fire(self, game_engine, object_pos):
         if self.mana >= 5:
             bullet = Bullet()
-            bullet.id = ID.last_id
-            ID.last_id += 1
             bullet.set_directional_image(self.direction)
-            bullet.position_to_hit = object_pos
+            bullet.direction = (cos(radians(self.direction)), sin(radians(self.direction)))
             bullet.pos_x = self.pos_x
             bullet.pos_y = self.pos_y
             game_engine.current_scene.add_to_object_list(bullet)
@@ -47,10 +44,10 @@ class Enemy(NPC):
         if game_engine_lib.pause is False:
             self.game_engine = game_engine_lib
             self.direction, object_pos = self.object_direction()
-            self.direction += 180
             self.pos_to_draw = get_position_to_draw(self.character_image, (self.pos_x, self.pos_y),
                                        (self.character_image.get_width()/2,
                                         self.character_image.get_height()/2),
                                        self.direction)
-            self.current_image = rotate(self.character_image, self.direction)
+            print(self.direction)
+            self.current_image = rotate(self.character_image, -self.direction-90)
             self.fire(game_engine_lib, object_pos)

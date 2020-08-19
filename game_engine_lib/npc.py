@@ -28,4 +28,4 @@ class NPC(Character):
                 if x.character_id == self.connected_character:
                     object_pos = (x.pos_x + (x.max_list[1]-x.max_list[0])/2,
                                   x.pos_y+(x.maximum_list[3]-x.character_image.get_height()/2))
-                    return degrees(atan2(object_pos[0]-self.pos_x, object_pos[1]-self.pos_y)), object_pos
+                    return degrees(atan2(object_pos[1]-self.pos_y, object_pos[0]-self.pos_x)), object_pos

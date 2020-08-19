@@ -277,6 +277,12 @@ class GameEngine(object):
             mouse_position = pygame.mouse.get_pos()
             for x in self.current_scene.character_list:
                 x.update(eventg, mouse_position, self)
+            for x in self.current_scene.delete_object_list:
+                print(x)
+                print(self.current_scene.object_list)
+                self.current_scene.object_list.remove(x)
+                print("removed")
+            self.current_scene.delete_object_list = []
             for x in self.current_scene.object_list:
                 x.update(eventg, mouse_position, self)
             if not self.current_scene.auto_lightining:

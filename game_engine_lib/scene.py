@@ -4,6 +4,7 @@ class Scene:
         self.moveable_area = (800, 600)
         self.character_list = []
         self.object_list = []
+        self.delete_object_list = []
         self.equipment_list = []
         self.auto_lightining = True
         self.scene_lights = []
