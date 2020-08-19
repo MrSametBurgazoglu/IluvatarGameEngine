@@ -11,6 +11,8 @@ class Character(object):
     def __init__(self):
         self.pos_x = 0
         self.pos_y = 0
+        self.width = 0
+        self.height = 0
         self.healt = 0#WORK IN PROGRESS
         self.speed = 1#npclerin hızları
         self.characterlook = True# True => right False => left
@@ -113,7 +115,9 @@ class Character(object):
     def draw_character(self, skeleton, display):
         self.set_character_parts(skeleton)
         self.max_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
-        self.character_image = Surface((self.max_list[1]-self.max_list[0], self.max_list[3]-self.max_list[2]), SRCALPHA)
+        self.width = self.max_list[1] - self.max_list[0]
+        self.height = self.max_list[3] - self.max_list[2]
+        self.character_image = Surface((self.width, self.height), SRCALPHA)
         if len(self.maximum_list) == 0:
             self.maximum_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
         self.draw_shadow(self.maximum_list, display)

@@ -10,8 +10,8 @@ class Player(Character):
         super().__init__()
         self.pos_x = 150
         self.pos_y = 350
-        self.healt = 1000
-        self.character_id = "#000"
+        self.health = 1000
+        self.character_id = "#000"  # TODO ID AND NAME MUST BE STANDARD FOR EVERY OBJECT
         self.character_name = "HERO"
         self.idle_animation = Animator("player_idle.animation", True, False)
         self.walking_animation = Animator("player_walking.animation", True, False)
@@ -99,6 +99,9 @@ class Player(Character):
                 x.animator = switcher
                 x.animator.switch_animation.working = True
         return switcher
+
+    def get_attacked(self):
+        self.health -= 10
 
     def update(self, event, mouse_position, game_engine_lib):
         #drawer, scene, pause, display

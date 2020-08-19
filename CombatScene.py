@@ -6,6 +6,26 @@ from game_engine_lib import UI
 from pygame import image
 
 
+class LoseUI(UI.UI):
+    def __init__(self):
+        super().__init__()
+        self.width = 500
+        self.height = 200
+        self.pos_x = 300
+        self.pos_y = 250
+        self.state = True
+        self.background_color = "transparent"
+        self.set_font_size(100)
+        self.message = UI.TextWidget()
+        self.message.text = "Game Over"
+        self.message.pos_x = 0
+        self.message.pos_y = 0
+        self.message.font_color = (255, 255, 255)
+        self.add_widget(self.message)
+        self.state = True
+        self.make_pause = True
+
+
 class CardsPart(UI.UI):
     def __init__(self):
         super().__init__()
@@ -55,6 +75,7 @@ class CombatController(SceneController):
     def __init__(self):
         super().__init__()
         self.combat_ui = CardsPart()
+        self.lose_ui = LoseUI()
         self.add_passage(None, self.combat_ui)
         self.script = self.update_system
 
@@ -62,9 +83,12 @@ class CombatController(SceneController):
         for x in self.game_engine.current_scene.character_list:
             if x.mana < 10:
                 x.mana += 0.01
-        for x in self.game_engine.current_scene.character_list:
             if x.character_id == "#000":
                 self.combat_ui.mana_bar.text = str(int(x.mana))
+                self.combat_ui.health_text.text = "Health: {}".format(x.health)
+                if x.health <= 0:
+                    self.add_passage(None, self.lose_ui)
+                    self.game_engine.pause = True
 
 
 class CombatScene(Scene):

@@ -48,6 +48,5 @@ class Enemy(NPC):
                                        (self.character_image.get_width()/2,
                                         self.character_image.get_height()/2),
                                        self.direction)
-            print(self.direction)
             self.current_image = rotate(self.character_image, -self.direction-90)
             self.fire(game_engine_lib, object_pos)
