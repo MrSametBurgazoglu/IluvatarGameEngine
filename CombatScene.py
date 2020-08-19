@@ -74,10 +74,20 @@ class CombatScene(Scene):
 
     def init(self):
         enemy_character = Enemy()
+        enemy_character2 = Enemy()
+        enemy_character2.character_id = "#003"
+        enemy_character2.pos_x = 600
+        enemy_character2.pos_y = 200
+        enemy_character3 = Enemy()
+        enemy_character3.character_id = "#004"
+        enemy_character3.pos_x = 200
+        enemy_character3.pos_y = 200
         #sword = Equipment()
         #sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
         #enemy_character.add_equipment(sword)
         self.add_to_character_list(enemy_character)
+        self.add_to_character_list(enemy_character2)
+        self.add_to_character_list(enemy_character3)
         # self.character_list[0].switch_to_take_sword_animation()
         #enemy_character.switch_to_take_sword_animation()
 

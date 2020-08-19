@@ -11,7 +11,7 @@ class Enemy(NPC):
     def __init__(self):
         super().__init__()
         self.pos_x = 350
-        self.pos_y = 350
+        self.pos_y = 450
         self.healt = 1000
         self.character_id = "#002"
         self.character_name = "TARET"
@@ -24,8 +24,6 @@ class Enemy(NPC):
         self.pos_to_draw = (self.pos_x, self.pos_y)
 
     def fire(self, display, object_pos):
-        print(self.direction)
-        print(object_pos)
         draw.line(display, (0, 0, 255), (self.pos_x, self.pos_y), object_pos, 2)
 
     def update(self, event, mouse_position, game_engine_lib):
