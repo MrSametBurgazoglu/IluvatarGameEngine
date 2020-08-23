@@ -14,7 +14,7 @@ class Enemy(NPC):
         self.pos_x = 350
         self.pos_y = 450
         self.healt = 1000
-        self.character_id = "#002"
+        self.id = "#002"
         self.character_name = "TARET"
         self.character_image = image.load("taret.png")
         self.direction = 0

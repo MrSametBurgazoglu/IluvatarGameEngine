@@ -83,7 +83,7 @@ class CombatController(SceneController):
         for x in self.game_engine.current_scene.character_list:
             if x.mana < 10:
                 x.mana += 0.01
-            if x.character_id == "#000":
+            if x.id == "#000":
                 self.combat_ui.mana_bar.text = str(int(x.mana))
                 self.combat_ui.health_text.text = "Health: {}".format(x.health)
                 if x.health <= 0:
@@ -99,11 +99,11 @@ class CombatScene(Scene):
     def init(self):
         enemy_character = Enemy()
         enemy_character2 = Enemy()
-        enemy_character2.character_id = "#003"
+        enemy_character2.id = "#003"
         enemy_character2.pos_x = 600
         enemy_character2.pos_y = 200
         enemy_character3 = Enemy()
-        enemy_character3.character_id = "#004"
+        enemy_character3.id = "#004"
         enemy_character3.pos_x = 200
         enemy_character3.pos_y = 200
         #sword = Equipment()

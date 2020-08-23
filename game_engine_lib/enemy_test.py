@@ -11,7 +11,7 @@ class Enemy(NPC):
         self.pos_x = 750
         self.pos_y = 350
         self.healt = 1000
-        self.character_id = "#001"
+        self.id = "#001"
         self.character_name = "ENEMY"
         self.idle_animation = Animator("player_idle.animation", True, False)
         self.idle_switcher = None

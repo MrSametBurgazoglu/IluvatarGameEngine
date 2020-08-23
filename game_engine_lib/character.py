@@ -17,7 +17,7 @@ class Character(object):
         self.speed = 1#npclerin hızları
         self.characterlook = True# True => right False => left
         self.character_name = None
-        self.character_id = None#must be unique
+        self.id = None#must be unique
         self.character_logo_dir = None
         self.character_parts = []#id,image
         self.liste = []#skeletondan dönen verilerin tutulduğu liste
@@ -151,7 +151,7 @@ class Character(object):
 
     def get_distance_from_object(self, id):
         for x in self.game_engine.current_scene.character_list:
-            if x.character_id == id:
+            if x.id == id:
                 return ((x.pos_x-self.pos_x) ** 2 + (x.pos_y-self.pos_y) ** 2) ** 0.5
 
     def add_to_animator_list(self, key, animation):

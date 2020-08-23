@@ -2,7 +2,6 @@ from math import sqrt
 
 
 def is_possible(x, y, scene):
-    result = True
     for nesne in scene.object_list:
         if nesne.type == 0:
             if is_possible_kare(x, y, nesne) is False:
@@ -10,7 +9,6 @@ def is_possible(x, y, scene):
         elif nesne.type == 1:
             if is_possible_kare(x, y, nesne) is False:
                 return False
-
     return True
 
 

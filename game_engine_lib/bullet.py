@@ -23,6 +23,7 @@ class Bullet(Nesne):
             nesne = find_which_one(self.pos_x, self.pos_y, game_engine_lib.current_scene.character_list)
             if nesne is not None:
                 nesne.get_attacked()
+                game_engine_lib.current_scene.delete_object_list.append(self)
 
 
 

@@ -11,7 +11,7 @@ class Player(Character):
         self.pos_x = 150
         self.pos_y = 350
         self.health = 1000
-        self.character_id = "#000"  # TODO ID AND NAME MUST BE STANDARD FOR EVERY OBJECT
+        self.id = "#000"
         self.character_name = "HERO"
         self.idle_animation = Animator("player_idle.animation", True, False)
         self.walking_animation = Animator("player_walking.animation", True, False)
