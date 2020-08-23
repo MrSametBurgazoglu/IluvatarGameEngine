@@ -86,7 +86,7 @@ class Enemy(NPC):
             for x in self.character_parts:
                 if x.id in ids:
                     x.animator = switcher
-            self.mana -= 4
+                self.mana -= 4
 
     def switch_to_get_stabbing_animation(self):
         switcher = Switcher(self.last_data, self.get_stabbing_animation, 30, True)

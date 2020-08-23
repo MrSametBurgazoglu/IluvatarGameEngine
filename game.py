@@ -16,7 +16,8 @@ mouse_dict = {1: "left_click",
 class Musichandler(object):
     def __init__(self):
         self.no = 0
-        self.music_list = ["output.wav"]
+        self.music_list = ["a.wav"]
+        pygame.mixer.init()
 
     def add_to_list(self, file):
         self.music_list.append(file)
@@ -43,8 +44,8 @@ class GameEngine(object):
         self.scene_light = None
         self.moveable_area = (0, 0)
         self.scene_controller = None
-        #self.music_handler = Musichandler()
-        #self.music_handler.play()
+        self.music_handler = Musichandler()
+        self.music_handler.play()
         self.pause = False
 
     def set_win_wh(self, widht, height):

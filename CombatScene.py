@@ -4,6 +4,7 @@ from game_engine_lib.equipment import Equipment
 from scene_controller import SceneController
 from game_engine_lib import UI
 from pygame import image
+from random import choice
 
 
 class LoseUI(UI.UI):
@@ -17,7 +18,7 @@ class LoseUI(UI.UI):
         self.background_color = "transparent"
         self.set_font_size(100)
         self.message = UI.TextWidget()
-        self.message.text = "Game Over"
+        self.message.text = "CBG Sunar"
         self.message.pos_x = 0
         self.message.pos_y = 0
         self.message.font_color = (255, 255, 255)
@@ -78,6 +79,7 @@ class CombatController(SceneController):
         self.lose_ui = LoseUI()
         self.add_passage(None, self.combat_ui)
         self.script = self.update_system
+        self.ym = 0
 
     def update_system(self):
         for x in self.game_engine.current_scene.character_list:
@@ -89,6 +91,12 @@ class CombatController(SceneController):
                 if x.health <= 0:
                     self.add_passage(None, self.lose_ui)
                     self.game_engine.pause = True
+        if self.ym >= 10:
+            liste = self.game_engine.current_scene.character_list[1:]
+            c = choice(liste)
+            c.fire(self.game_engine)
+        else:
+            self.ym += 0.1
 
 
 class CombatScene(Scene):
@@ -102,10 +110,22 @@ class CombatScene(Scene):
         enemy_character2.id = "#003"
         enemy_character2.pos_x = 600
         enemy_character2.pos_y = 200
+        enemy_character2.mana = 5
         enemy_character3 = Enemy()
         enemy_character3.id = "#004"
         enemy_character3.pos_x = 200
         enemy_character3.pos_y = 200
+        enemy_character3.mana = 0
+        enemy_character4 = Enemy()
+        enemy_character4.id = "#005"
+        enemy_character4.pos_x = 300
+        enemy_character4.pos_y = 300
+        enemy_character4.mana = 0
+        enemy_character5 = Enemy()
+        enemy_character5.id = "#006"
+        enemy_character5.pos_x = 400
+        enemy_character5.pos_y = 400
+        enemy_character5.mana = 0
         #sword = Equipment()
         #sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
         #enemy_character.add_equipment(sword)

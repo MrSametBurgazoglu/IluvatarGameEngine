@@ -8,9 +8,9 @@ from game_engine_lib import physic
 class Player(Character):
     def __init__(self):
         super().__init__()
-        self.pos_x = 150
-        self.pos_y = 350
-        self.health = 1000
+        self.pos_x = 350
+        self.pos_y = 300
+        self.health = 100
         self.id = "#000"
         self.character_name = "HERO"
         self.idle_animation = Animator("player_idle.animation", True, False)
