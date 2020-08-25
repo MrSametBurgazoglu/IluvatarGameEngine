@@ -139,14 +139,24 @@ class ImageWidget(Widget):
     def __init__(self):
         super().__init__()
         self.image = None
+        self.image2 = None
+        self.gif = False
         self.background = False
+        self.sayac = 0
 
     def draw_self(self, display, drawer, pos, Font):
         if self.background:
             drawer.rect(display, (0, 0, 0),
                         [self.pos_x + pos[0], self.pos_y + pos[1],
                          self.image.get_width(), self.image.get_height()], 0)
-        display.blit(self.image, (self.pos_x + pos[0], self.pos_y + pos[1]))
+        if self.gif:
+            if self.sayac % 400 >= 200:
+                display.blit(self.image, (self.pos_x + pos[0], self.pos_y + pos[1]))
+            else:
+                display.blit(self.image2, (self.pos_x + pos[0], self.pos_y + pos[1]))
+            self.sayac += 1
+        else:
+            display.blit(self.image, (self.pos_x + pos[0], self.pos_y + pos[1]))
 
 
 class EntryWidget(Widget):

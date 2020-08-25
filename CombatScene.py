@@ -16,13 +16,11 @@ class LoseUI(UI.UI):
         self.pos_y = 250
         self.state = True
         self.background_color = "transparent"
-        self.set_font_size(100)
-        self.message = UI.TextWidget()
-        self.message.text = "CBG Sunar"
-        self.message.pos_x = 0
-        self.message.pos_y = 0
-        self.message.font_color = (255, 255, 255)
-        self.add_widget(self.message)
+        self.text = UI.TextWidget()
+        self.text.text = "Game Over"
+        self.text.pos_x = 500
+        self.text.pos_y = 100
+        self.add_widget(self.text)
         self.state = True
         self.make_pause = True
 
@@ -79,7 +77,6 @@ class CombatController(SceneController):
         self.lose_ui = LoseUI()
         self.add_passage(None, self.combat_ui)
         self.script = self.update_system
-        self.ym = 0
 
     def update_system(self):
         for x in self.game_engine.current_scene.character_list:
@@ -91,12 +88,6 @@ class CombatController(SceneController):
                 if x.health <= 0:
                     self.add_passage(None, self.lose_ui)
                     self.game_engine.pause = True
-        if self.ym >= 10:
-            liste = self.game_engine.current_scene.character_list[1:]
-            c = choice(liste)
-            c.fire(self.game_engine)
-        else:
-            self.ym += 0.1
 
 
 class CombatScene(Scene):
@@ -106,32 +97,10 @@ class CombatScene(Scene):
 
     def init(self):
         enemy_character = Enemy()
-        enemy_character2 = Enemy()
-        enemy_character2.id = "#003"
-        enemy_character2.pos_x = 600
-        enemy_character2.pos_y = 200
-        enemy_character2.mana = 5
-        enemy_character3 = Enemy()
-        enemy_character3.id = "#004"
-        enemy_character3.pos_x = 200
-        enemy_character3.pos_y = 200
-        enemy_character3.mana = 0
-        enemy_character4 = Enemy()
-        enemy_character4.id = "#005"
-        enemy_character4.pos_x = 300
-        enemy_character4.pos_y = 300
-        enemy_character4.mana = 0
-        enemy_character5 = Enemy()
-        enemy_character5.id = "#006"
-        enemy_character5.pos_x = 400
-        enemy_character5.pos_y = 400
-        enemy_character5.mana = 0
         #sword = Equipment()
         #sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
         #enemy_character.add_equipment(sword)
         self.add_to_character_list(enemy_character)
-        self.add_to_character_list(enemy_character2)
-        self.add_to_character_list(enemy_character3)
         # self.character_list[0].switch_to_take_sword_animation()
         #enemy_character.switch_to_take_sword_animation()
 

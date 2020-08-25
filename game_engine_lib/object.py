@@ -20,6 +20,8 @@ class Nesne(object):
 
     def set_current_image(self, path):
         self.object_image = image.load(path)
+        self.width = self.object_image.get_width()
+        self.height = self.object_image.get_height()
 
     def draw_object(self, display):
         self.pos_to_draw = get_position_to_draw(self.object_image, (self.pos_x, self.pos_y),
