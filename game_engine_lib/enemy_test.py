@@ -2,6 +2,8 @@ from .npc import NPC
 from .animator import Animator
 from .animator import Switcher
 from .skeleton import Skeleton
+from .bullet import Bullet
+from math import sin, cos, radians
 from game_engine_lib import physic
 
 
@@ -48,6 +50,8 @@ class Enemy(NPC):
         self.connected_character = "#000"
         self.mana = 10
         self.moving = False
+        self.direction = None
+        self.object_pos = None
 
     def switch_to_walk_animation(self):
         switcher = Switcher(self.last_data, self.walking_animation, 30, False)
@@ -86,7 +90,7 @@ class Enemy(NPC):
             for x in self.character_parts:
                 if x.id in ids:
                     x.animator = switcher
-                self.mana -= 4
+            self.mana -= 4
 
     def switch_to_get_stabbing_animation(self):
         switcher = Switcher(self.last_data, self.get_stabbing_animation, 30, True)
@@ -117,11 +121,27 @@ class Enemy(NPC):
         self.current_animation = self.swing_sword_animation
         self.animation_ongoing = True
 
+    def fire(self):
+        print(self.mana)
+        if self.mana >= 10:
+            bullet = Bullet()
+            bullet.set_directional_image(self.direction)
+            bullet.direction = (cos(radians(self.direction)), sin(radians(self.direction)))
+            bullet.pos_x = self.pos_x
+            bullet.pos_y = self.pos_y
+            self.game_engine.current_scene.add_to_object_list(bullet)
+            self.mana -= 10
+            print("mana deleted")
+        if self.mana < 10:
+            self.mana += 0.1
+
     def update(self, event, mouse_position, game_engine_lib):
         #drawer, scene, pause, display
         self.draw_character(self.skeleton, game_engine_lib.display)
         if game_engine_lib.pause is False:
             self.game_engine = game_engine_lib
+            self.direction, self.object_pos = self.object_direction()
+            self.fire()
             self.characterlook = self.check_look()
             a = True
             if self.get_distance_from_object(self.connected_character) >= 100:
