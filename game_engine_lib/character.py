@@ -13,6 +13,7 @@ class Character(object):
         self.pos_y = 0
         self.width = 0
         self.height = 0
+        self.gps = [0, 0, 0, 0]
         self.healt = 0#WORK IN PROGRESS
         self.speed = 1#npclerin hızları
         self.characterlook = True# True => right False => left
@@ -117,17 +118,21 @@ class Character(object):
         self.max_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
         self.width = self.max_list[1] - self.max_list[0]
         self.height = self.max_list[3] - self.max_list[2]
+        self.gps[2] = self.width
+        self.gps[3] = self.height
         self.character_image = Surface((self.width, self.height), SRCALPHA)
         if len(self.maximum_list) == 0:
             self.maximum_list = shadow.get_maximum(self.character_parts, (self.pos_x, self.pos_y))
         self.draw_shadow(self.maximum_list, display)
         self.set_physic()
         self.draw_character_image(self.max_list)
-        img = self.character_image.convert_alpha()
+        img = self.character_image.convert_alpha()  # convert_alpha
         if not self.characterlook:
             img = flip(img, True, False)
         display.blit(img, (self.pos_x,
                            self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
+        self.gps[0] = self.pos_x
+        self.gps[1] = self.pos_y+(self.maximum_list[3]-self.character_image.get_height())
         #display.blit(img, (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2,
         #                   self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
         #draw_rect(display, (255, 0, 0),

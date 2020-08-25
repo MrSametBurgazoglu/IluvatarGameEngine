@@ -34,6 +34,6 @@ def is_possible_daire(x, y, nesne):
 
 def find_which_one(x, y, scene):
     for nesne in scene:
-        if nesne.pos_x < x < nesne.pos_x + nesne.width and nesne.pos_y < y < nesne.pos_y + nesne.height:
+        if nesne.gps[0] < x < nesne.gps[0] + nesne.gps[2] and nesne.gps[1] < y < nesne.gps[1] + nesne.gps[3]:
             return nesne
     return None
