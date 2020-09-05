@@ -23,7 +23,7 @@ class LoseUI(UI.UI):
         self.text.pos_y = 100
         self.add_widget(self.text)
         self.state = True
-        self.make_pause = True
+        self.make_pause = False
 
 
 class CardsPart(UI.UI):
