@@ -16,6 +16,7 @@ class Equipment(object):
         self.height = 0
         self.rotate = 0
         self.on_hand = False
+        self.gps = [0, 0, 0, 0]
 
     def config(self, id, connected_id, connect_pos, connect_parent_pos, image_url=None):
         self.id = id
@@ -37,5 +38,6 @@ class Equipment(object):
         if self.on_hand:
             self.rotate = self.connected_parent.rotate + 90
         pos_to_draw = get_position_to_draw(self.image, pos, origin_pos, self.rotate)
+        self.gps = [pos_to_draw[0], pos_to_draw[1], self.width, self.height]
         return pos_to_draw
 

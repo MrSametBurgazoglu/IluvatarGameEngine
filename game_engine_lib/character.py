@@ -133,13 +133,6 @@ class Character(object):
                            self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
         self.gps[0] = self.pos_x
         self.gps[1] = self.pos_y+(self.maximum_list[3]-self.character_image.get_height())
-        #display.blit(img, (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2,
-        #                   self.pos_y+(self.maximum_list[3]-self.character_image.get_height())))
-        #draw_rect(display, (255, 0, 0),
-        #          (self.pos_x+(self.maximum_list[1]-self.maximum_list[0])/2, self.pos_y+(self.maximum_list[3]-self.character_image.get_height()),
-        #           self.character_image.get_width(),
-        #           self.character_image.get_height()),
-        #          1)
 
     def draw_immobile_character(self, image, display, pos):
         display.blit(image, pos)
