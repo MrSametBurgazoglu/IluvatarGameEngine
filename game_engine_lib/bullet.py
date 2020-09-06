@@ -10,7 +10,7 @@ class Bullet(Nesne):
         self.speed = 10
 
     def set_directional_image(self, angle):
-        self.angle = -angle-90
+        self.angle = -angle
 
     def update(self, event, mouse_position, game_engine_lib):
         self.draw_object(game_engine_lib.display)

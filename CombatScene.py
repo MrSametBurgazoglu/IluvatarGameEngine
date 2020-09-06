@@ -77,33 +77,34 @@ class CombatController(SceneController):
         self.combat_ui = CardsPart()
         self.lose_ui = LoseUI()
         self.add_passage(None, self.combat_ui)
-        self.script = self.update_system
+        # self.script = self.update_system
 
-    def update_system(self):
-        for x in self.game_engine.current_scene.character_list:
-            if x.mana < 10:
-                x.mana += 0.01
-            if x.id == "#000":
-                self.combat_ui.mana_bar.text = str(int(x.mana))
-                self.combat_ui.health_text.text = "Health: {}".format(x.health)
-                if x.health <= 0:
-                    self.add_passage(None, self.lose_ui)
-                    self.game_engine.pause = True
+#    def update_system(self):
+#        for x in self.game_engine.current_scene.character_list:
+#            if x.mana < 10:
+#                x.mana += 0.01
+#            if x.id == "#000":
+#                self.combat_ui.mana_bar.text = str(int(x.mana))
+#                self.combat_ui.health_text.text = "Health: {}".format(x.health)
+#                if x.health <= 0:
+#                    self.add_passage(None, self.lose_ui)
+#                    self.game_engine.pause = True
 
 
 class CombatScene(Scene):
     def __init__(self):
         super().__init__()
-        self.background_image = "background.png"
+        self.background_image = "space.jpg"
 
     def init(self):
-        enemy_character = Enemy()
-        sword = Equipment()
-        sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
-        enemy_character.add_equipment(sword)
-        self.add_to_character_list(enemy_character)
+        pass
+        #enemy_character = Enemy()
+        #sword = Equipment()
+        #sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
+        #enemy_character.add_equipment(sword)
+        #self.add_to_character_list(enemy_character)
         # self.character_list[0].switch_to_take_sword_animation()
-        enemy_character.switch_to_take_sword_animation()
+        #enemy_character.switch_to_take_sword_animation()
 
 
 combat_scene = CombatScene()
