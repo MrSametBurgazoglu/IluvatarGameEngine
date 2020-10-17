@@ -1,6 +1,5 @@
 import game
 from game_engine_lib import player as player_m
-from game_engine_lib import PlayerShip
 from game_engine_lib import scene as scene_m
 from game_engine_lib import enemy_test as enemy_m
 from game_engine_lib import light as light_m
@@ -145,9 +144,8 @@ class GameTest(object):
         self.menu = Menu()
         self.scene_controller.add_passage(K_ESCAPE, self.menu)
         self.scene_light = light_m.Light()
-        main_ship = PlayerShip.PlayerShip()
         self.scene1.add_light_to_scene(self.scene_light)
-        combat_scene.add_to_character_list(main_ship)
+        combat_scene.add_to_character_list(self.player)
         combat_controller.game_engine = self.game_engine
         self.game_engine.init_scene(self.scene0)
         self.game_engine.start_engine()

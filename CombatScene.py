@@ -94,7 +94,7 @@ class CombatController(SceneController):
 class CombatScene(Scene):
     def __init__(self):
         super().__init__()
-        self.background_image = "space.jpg"
+        self.background_image = "background.png"
 
     def init(self):
         pass

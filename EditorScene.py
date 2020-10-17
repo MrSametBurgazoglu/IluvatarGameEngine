@@ -26,7 +26,7 @@ class EditorController(SceneController):
 class EditorScene(Scene):
     def __init__(self):
         super().__init__()
-        self.background_image = "background.jpeg"
+        self.background_image = "background.png"
 
     def init(self):
         pass
