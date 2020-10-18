@@ -3,7 +3,8 @@ from game_engine_lib.scene import Scene
 from game_engine_lib.scene_controller import SceneController
 from game_engine_lib import UI
 from pygame import image
-
+from sys import path
+path.append('..')
 
 class LoseUI(UI.UI):
     def __init__(self):
@@ -41,7 +42,7 @@ class CardsPart(UI.UI):
         self.mana_bar.font_color = (255, 255, 255)
 
         self.icon = UI.ImageWidget()
-        self.icon.image = image.load("icon.png")
+        self.icon.image = image.load("game/icon.png")
         self.icon.pos_y = 70
         self.icon.pos_x = 150
         self.icon.background = True
@@ -91,7 +92,7 @@ class CombatController(SceneController):
 class CombatScene(Scene):
     def __init__(self):
         super().__init__()
-        self.background_image = "background.png"
+        self.background_image = "game/background.png"
 
     def init(self):
         pass

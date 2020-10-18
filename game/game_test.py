@@ -2,10 +2,10 @@ from game_engine_lib import player as player_m, game, scene_controller as scene_
 from game_engine_lib import scene as scene_m
 from game_engine_lib import light as light_m
 from game_engine_lib import equipment as equipment_m
-from game_engine_lib.game import combat_scene, combat_controller
+from scenes.CombatScene import combat_scene, combat_controller
 from game_engine_lib import UI
 from pygame import K_ESCAPE
-
+import sys
 
 class Menu(UI.UI):
     def __init__(self):
@@ -115,7 +115,7 @@ class GameTest(object):
         self.game_engine.set_win_wh(1000, 600)
         self.game_engine.init_engine()
         self.scene0 = scene_m.Scene()
-        self.scene0.background_image = "background.png"
+        self.scene0.background_image = "game/background.png"
         self.scene_controller0 = scene_controller_m.SceneController()
         self.scene_controller0.game_engine = self.game_engine
         self.giris_ui = Giris()
@@ -130,9 +130,9 @@ class GameTest(object):
         self.scene_controller0.add_passage(None, self.ayarlar_ui)
         self.game_engine.set_scene_controller(self.scene_controller0)
         self.scene1 = scene_m.Scene()
-        self.scene1.background_image = "background.png"
+        self.scene1.background_image = "game/background.png"
         self.sword = equipment_m.Equipment()
-        self.sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "karakter/sword.png")
+        self.sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "game/karakter/sword.png")
         self.player = player_m.Player()
         self.player.add_equipment(self.sword)
         self.scene1.add_to_character_list(self.player)
@@ -158,4 +158,5 @@ class GameTest(object):
 
 
 if __name__ == "__main__":
+    print(sys.path)
     game_test = GameTest()
