@@ -77,7 +77,7 @@ class GameEngine(object):
         exit()
 
     def init_engine(self):
-        self.display = pygame.display.set_mode((self.win_width, self.win_height))
+        self.display = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption(self.window_name)
 
     def init_scene(self, scene):
@@ -277,6 +277,7 @@ class GameEngine(object):
                     pygame.quit()
                     exit()
             mouse_position = pygame.mouse.get_pos()
+            self.scene_controller.update(eventx, eventg, mouse_position, self)
             for x in self.current_scene.character_list:
                 x.update(eventg, mouse_position, self)
             for x in self.current_scene.delete_object_list:
@@ -290,7 +291,6 @@ class GameEngine(object):
                 for x in self.current_scene.scene_lights:
                     x.lighting(temp_surface)
                 self.display.blit(temp_surface.convert_alpha(), (0, 0))
-            self.scene_controller.update(eventx, eventg, mouse_position, self)
             if "keyboard_used" in eventg:
                 eventg.remove("keyboard_used")
             pygame.display.flip()

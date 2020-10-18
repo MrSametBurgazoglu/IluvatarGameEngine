@@ -3,6 +3,7 @@ from game_engine_lib.scene import Scene
 from game_engine_lib.scene_controller import SceneController
 from game_engine_lib import UI
 from pygame import image
+from pygame import draw
 from sys import path
 path.append('..')
 
@@ -76,18 +77,12 @@ class CombatController(SceneController):
         self.combat_ui = CardsPart()
         self.lose_ui = LoseUI()
         self.add_passage(None, self.combat_ui)
-        # self.script = self.update_system
+        self.script = self.update_system
 
-#    def update_system(self):
-#        for x in self.game_engine.current_scene.character_list:
-#            if x.mana < 10:
-#                x.mana += 0.01
-#            if x.id == "#000":
-#                self.combat_ui.mana_bar.text = str(int(x.mana))
-#                self.combat_ui.health_text.text = "Health: {}".format(x.health)
-#                if x.health <= 0:
-#                    self.add_passage(None, self.lose_ui)
-#                    self.game_engine.pause = True
+    def update_system(self):
+        for y in range(3):
+            for x in range(15):
+                draw.rect(self.game_engine.display, (0, 0, 255), (50+x*50, 200+y*50, 50, 50), 1)
 
 
 class CombatScene(Scene):
