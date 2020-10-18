@@ -1,7 +1,7 @@
-from .npc import NPC
-from .animator import Animator
-from .animator import Switcher
-from .skeleton import Skeleton
+from game_engine_lib.npc import NPC
+from game_engine_lib.animator import Animator
+from game_engine_lib.animator import Switcher
+from game_engine_lib.skeleton import Skeleton
 from .bullet import Bullet
 from math import sin, cos, radians
 from game_engine_lib import physic

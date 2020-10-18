@@ -1,11 +1,8 @@
 from game_engine_lib.scene import Scene
 # from game_engine_lib.enemy_taret import Enemy
-from game_engine_lib.enemy_test import Enemy
-from game_engine_lib.equipment import Equipment
-from scene_controller import SceneController
+from game_engine_lib.scene_controller import SceneController
 from game_engine_lib import UI
 from pygame import image
-from random import choice
 
 
 class LoseUI(UI.UI):

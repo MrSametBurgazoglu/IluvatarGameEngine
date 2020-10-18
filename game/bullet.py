@@ -1,5 +1,5 @@
-from .object import Nesne
-from .physic import find_which_one
+from game_engine_lib.object import Nesne
+from game_engine_lib.physic import find_which_one
 
 
 class Bullet(Nesne):

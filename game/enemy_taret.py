@@ -1,8 +1,8 @@
-from .npc import NPC
+from game_engine_lib.npc import NPC
 from pygame import image
 from pygame.transform import rotate
 from pygame import draw
-from .tools import get_position_to_draw
+from game_engine_lib.tools import get_position_to_draw
 from .bullet import Bullet
 from math import sin, cos, radians
 

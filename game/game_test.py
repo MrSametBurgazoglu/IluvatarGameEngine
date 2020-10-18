@@ -1,11 +1,8 @@
-import game
-from game_engine_lib import player as player_m
+from game_engine_lib import player as player_m, game, scene_controller as scene_controller_m
 from game_engine_lib import scene as scene_m
-from game_engine_lib import enemy_test as enemy_m
 from game_engine_lib import light as light_m
 from game_engine_lib import equipment as equipment_m
-from CombatScene import combat_scene, combat_controller
-import scene_controller as scene_controller_m
+from game_engine_lib.game import combat_scene, combat_controller
 from game_engine_lib import UI
 from pygame import K_ESCAPE
 
