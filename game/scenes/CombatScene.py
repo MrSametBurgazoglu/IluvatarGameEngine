@@ -6,6 +6,7 @@ from pygame import image
 from sys import path
 path.append('..')
 
+
 class LoseUI(UI.UI):
     def __init__(self):
         super().__init__()
@@ -30,7 +31,7 @@ class CardsPart(UI.UI):
         self.width = 500
         self.height = 200
         self.pos_x = 200
-        self.pos_y = 450
+        self.pos_y = 350
         self.state = True
         self.background_color = "transparent"
         self.set_font_size(20)
@@ -92,7 +93,7 @@ class CombatController(SceneController):
 class CombatScene(Scene):
     def __init__(self):
         super().__init__()
-        self.background_image = "game/background.png"
+        self.background_image = "game/bg.jpg"
 
     def init(self):
         pass

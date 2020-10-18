@@ -31,7 +31,7 @@ class Giris(UI.UI):
         super().__init__()
         self.width = 200
         self.height = 200
-        self.pos_x = 300
+        self.pos_x = 400
         self.pos_y = 200
         self.background_color = "transparent"
         self.begin = UI.ButtonWidget()
@@ -112,10 +112,10 @@ class GameTest(object):
         self.game_engine = game.GameEngine()
         self.game_engine.set_window_name("WORK IN PROGRESS")
         self.game_engine.set_fps(60)
-        self.game_engine.set_win_wh(1000, 600)
+        self.game_engine.set_win_wh(1000, 500)
         self.game_engine.init_engine()
         self.scene0 = scene_m.Scene()
-        self.scene0.background_image = "game/background.png"
+        self.scene0.background_image = "game/bg.jpg"
         self.scene_controller0 = scene_controller_m.SceneController()
         self.scene_controller0.game_engine = self.game_engine
         self.giris_ui = Giris()
@@ -130,7 +130,7 @@ class GameTest(object):
         self.scene_controller0.add_passage(None, self.ayarlar_ui)
         self.game_engine.set_scene_controller(self.scene_controller0)
         self.scene1 = scene_m.Scene()
-        self.scene1.background_image = "game/background.png"
+        self.scene1.background_image = "game/bg.jpg"
         self.sword = equipment_m.Equipment()
         self.sword.config("#020", "#002", (0.5, 0.1), (0.1, 0.3), "game/karakter/sword.png")
         self.player = player_m.Player()
